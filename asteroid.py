@@ -8,6 +8,7 @@ class Asteroid(CircleShape):
 
     def __init__(self, x, y, radius, velocity=None):
         super().__init__(x, y, radius)
+        self.kind = radius // ASTEROID_MIN_RADIUS
 
     def draw(self, screen):
         pygame.draw.circle(screen, "white", self.position, self.radius, width=2)
@@ -29,3 +30,7 @@ class Asteroid(CircleShape):
             asteroid1.velocity = vector1 * 1.2
             asteroid2 = Asteroid(self.position.x, self.position.y, new_radius)
             asteroid2.velocity = vector2 * 1.2
+
+    def get_points(self):
+        points = {3: 20, 2: 50, 1: 100}
+        return points.get(self.kind, 0)
